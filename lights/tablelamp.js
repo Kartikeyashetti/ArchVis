@@ -4,7 +4,7 @@ import {GUI} from 'dat.gui';
 export function loadModel(scene) {
   const loader = new GLTFLoader();
   loader.load(
-    '../asset/GLTF/TableLamp.glb',
+    '../asset/models/TableLamp.glb',
     (gltf) => {
       const model = gltf.scene;
       const gui = new GUI();

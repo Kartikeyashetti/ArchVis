@@ -322,7 +322,7 @@ gui.add(options, 'gammaCorrection').name('Gamma Correction').onChange((value) =>
 // Load the GLB model
 const loader = new GLTFLoader();
 loader.load(
-  '../asset/GLTF/kitchen.glb',
+  '../asset/models/untitled.glb',
   (gltf) => {
     const model = gltf.scene;
 

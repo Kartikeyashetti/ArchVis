@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev":"vite",
-    "build":"Vite build"
+    "dev": "vite",
+    "build": "Vite build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dat.gui": "^0.7.9",
+    "three": "^0.178.0",
+    "three-gpu-pathtracer": "^0.0.23",
     "vite": "^6.2.0"
   }
 }

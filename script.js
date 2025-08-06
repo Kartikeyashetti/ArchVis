@@ -157,7 +157,7 @@ if(gammaCorrectionPass){
 // Load the GLB model
 const loader = new GLTFLoader();
 loader.load(
-  '../asset/GLTF/kitchen.glb',
+  '../asset/GLTF/untitled.glb',
   (gltf) => {
     const model = gltf.scene;
 

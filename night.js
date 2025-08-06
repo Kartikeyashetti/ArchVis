@@ -143,9 +143,9 @@ const ssrPass = new SSRPass({
   selects: null,
 });
 
-ssrPass.opacity = 0.1;
+ssrPass.opacity = 0.21;
 ssrPass.maxDistance = 180;
-ssrPass.thickness = 0.018;
+ssrPass.thickness = 0.008;
 ssrPass.blur = true;
 ssrPass.strength = 1;
 ssrPass.infiniteThick = false;
@@ -302,27 +302,27 @@ gui.add(options, 'gammaCorrection').name('Gamma Correction').onChange((value) =>
   }
 });
 
-// const BLOOM_LAYER = 1;
-// const darkMaterial = new THREE.MeshBasicMaterial({ color: 'black' });
-// const materials = {};
+const BLOOM_LAYER = 1;
+const darkMaterial = new THREE.MeshBasicMaterial({ color: 'black' });
+const materials = {};
 
-// function darkenNonBloomed(obj) {
-//   if (obj.isMesh && !obj.layers.test(new THREE.Layers().set(BLOOM_LAYER))) {
-//     materials[obj.uuid] = obj.material;
-//     obj.material = darkMaterial;
-//   }
-// }
-// function restoreMaterial(obj) {
-//   if (materials[obj.uuid]) {
-//     obj.material = materials[obj.uuid];
-//     delete materials[obj.uuid];
-//   }
-// }
+function darkenNonBloomed(obj) {
+  if (obj.isMesh && !obj.layers.test(new THREE.Layers().set(BLOOM_LAYER))) {
+    materials[obj.uuid] = obj.material;
+    obj.material = darkMaterial;
+  }
+}
+function restoreMaterial(obj) {
+  if (materials[obj.uuid]) {
+    obj.material = materials[obj.uuid];
+    delete materials[obj.uuid];
+  }
+}
 
 // Load the GLB model
 const loader = new GLTFLoader();
 loader.load(
-  '../asset/models/untitled.glb',
+  '../asset/3dmodel/untitled.glb',
   (gltf) => {
     const model = gltf.scene;
 
@@ -364,37 +364,37 @@ camera.position.set(0,5,1)
 camera.lookAt(0,0,0)
 
 // Animation loop
-// function animate() {
-//   requestAnimationFrame(animate);
-//   controls.update();
-//   // composer.render();
-//   // ptRenderer.update();
-
-//   renderer.render(scene, camera);
-// }
-let useComposer = false;  // Default rendering
-document.querySelectorAll('input[name="renderMode"]').forEach((radio) => {
-  radio.addEventListener('change', (event) => {
-    if (event.target.value === 'composer') {
-      useComposer = true;
-    } else {
-      useComposer = false;
-    }
-  });
-});
-
-// Animation loop
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
+   composer.render();
+    //  ptRenderer.update();
 
-  if (useComposer) {
-    ptRenderer.update();
-    composer.render();
-  } else {
-    renderer.render(scene, camera);
-  }
+  //  renderer.render(scene, camera);
 }
+// let useComposer = false;  // Default rendering
+// document.querySelectorAll('input[name="renderMode"]').forEach((radio) => {
+//   radio.addEventListener('change', (event) => {
+//     if (event.target.value === 'composer') {
+//       useComposer = true;
+//     } else {
+//       useComposer = false;
+//     }
+//   });
+// });
+
+// //Animation loop
+// function animate() {
+//   requestAnimationFrame(animate);
+//   controls.update();
+
+//   if (useComposer) {
+//     ptRenderer.update();
+//     composer.render();
+//   } else {
+//     renderer.render(scene, camera);
+//   }
+// }
 
 animate();
 
